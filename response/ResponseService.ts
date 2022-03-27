@@ -14,6 +14,7 @@ const responseFormat = (error: boolean, data: any, message: string): IResponseFo
 });
 
 export const ResponseService = {
+
   sendError(response: Response, error: ResponseError | any) {
     response.status(error.status ?? 500)
         .json(responseFormat(true, null, error.message));

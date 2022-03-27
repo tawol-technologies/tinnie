@@ -8,4 +8,5 @@ export default class {
   static updated(prefix: string) {
     return prefix + ' successfully updated';
   }
+  static EXISTING = 'Already exist';
 }
