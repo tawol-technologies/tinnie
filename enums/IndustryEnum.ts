@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 export enum IndustryEnum {
-    PETROLEUM = 'Petroleum',
-    TOURISM = 'Tourism',
-    AGRICULTURAL = 'Agricultural',
-    TECHNOLOGY = 'Technology'
+    PETROLEUM = 'PETROLEUM',
+    TOURISM = 'TOURISM',
+    AGRICULTURAL = 'AGRICULTURAL',
+    TECHNOLOGY = 'TECHNOLOGY',
+    EDUCATION = 'EDUCATION',
 }
