@@ -5,10 +5,10 @@ export default class ResponseError extends Error {
   static BAD_REQUEST = 400;
   static INTERNAL_SERVER_ERROR = 500;
 
-  constructor(message: string, status: number) {
+  constructor(message: string, status?: number) {
     super(message);
     this.message = message;
-    this.status = status;
+    this.status = status ?? 500;
   }
 
   static get(error: any | Error, status?: number) {

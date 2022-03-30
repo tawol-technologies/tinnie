@@ -1,14 +1,15 @@
 import {IResponseFormat} from '../response/ResponseService';
 
 export default abstract class {
-  static create?(
-        entity: any,
-        ...others: any): IResponseFormat | any;
-  static delete?(
+  static async create?(
+        payload: any,
+        ...others: any): Promise<IResponseFormat>;
+  static async delete?(
         id: string,
-        ...others: any): IResponseFormat | any;
-  static update?(
+        ...others: any): Promise<IResponseFormat>;
+  static async update?(
       id: string,
-      entity: any,
-        ...others: any): IResponseFormat | any;
+      payload: any,
+        ...others: any): Promise<IResponseFormat>;
+  static async getAll?(): Promise<IResponseFormat>;
 }
