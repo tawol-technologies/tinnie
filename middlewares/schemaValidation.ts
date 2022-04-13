@@ -7,8 +7,10 @@ export const schemaValidationMDW = (schema: Joi.Schema,
     type?: 'body' | 'params' | 'query') =>
   (req: Request, res: Response, next: NextFunction) => {
     let reqData;
+    type = type ?? 'body';
     switch (type) {
       case 'body':
+        reqData = req.body;
         break;
       case 'params':
         reqData = req.params;
@@ -23,7 +25,7 @@ export const schemaValidationMDW = (schema: Joi.Schema,
     const {error} = schema.validate(reqData);
     if (error) {
       ResponseService.sendError(res,
-          new ResponseError(error.details[0].message, 400));
+          new ResponseError(error.details[0].message + ` in the ${type}`, 400));
       return;
     }
     reqData;

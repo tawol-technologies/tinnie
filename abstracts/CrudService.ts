@@ -8,7 +8,6 @@ export default abstract class {
         id: string,
         ...others: any): Promise<IResponseFormat>;
   static async update?(
-      id: string,
       payload: any,
         ...others: any): Promise<IResponseFormat>;
   static async getAll?(): Promise<IResponseFormat>;
