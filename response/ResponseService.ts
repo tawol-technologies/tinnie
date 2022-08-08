@@ -1,4 +1,5 @@
 import {Response} from 'express';
+import {ResponseBuilder} from './ResponseBody';
 import ResponseError from './ResponseError';
 
 export interface IResponseFormat<T = any> {
@@ -31,6 +32,10 @@ export const ResponseService = {
 
   raw(response: Response, data: any, status: number) {
     response.status(status).send(data);
+  },
+
+  builder(response: Response, body: ResponseBuilder) {
+    response.status(body.statusCode).json(body);
   },
 
 };

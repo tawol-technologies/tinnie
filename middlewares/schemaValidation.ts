@@ -33,3 +33,19 @@ export const schemaValidationMDW = (schema: Joi.Schema,
     return;
   };
 
+export const schemaValidationWithFileMDW = (
+    schema: Joi.Schema,
+    formdataKey: string) =>
+  (req: Request, res: Response, next: NextFunction) => {
+    // const reqData = JSON.parse(req.body[formdataKey]);
+    // const {error} = schema.validate(reqData, {convert: true});
+    // if (error) {
+    //   ResponseService.sendError(res,
+    //       new ResponseError(error.details[0].message + ` in the Formdata`, 400));
+    //   return;
+    // }
+    // reqData;
+    next();
+    return;
+  };
+

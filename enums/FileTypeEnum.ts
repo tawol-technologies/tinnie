@@ -3,5 +3,7 @@ export enum FileTypeEnum {
     IMAGE,
     VIDEO,
     DOC,
-    SPREADSHEET
+    SPREADSHEET,
+    PDF,
+    ANY
 }

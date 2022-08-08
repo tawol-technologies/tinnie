@@ -1,13 +1,31 @@
-import AppConfigs from '../../../configs/AppConfigs';
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 
-export const LogService = {
-  log(error: any) {
-    console.error(error);
+export enum LogType {
+  INFO, WARN, ERROR
+}
+
+export const Logger = {
+  log(msg: any, type?: LogType) {
+    const date = new Date();
+
+    switch (type) {
+      case LogType.ERROR:
+        return console.error(date + ': ' + msg);
+      case LogType.INFO:
+        return console.info(date + ': ' + msg);
+      case LogType.WARN:
+        return console.warn(date + ': ' + msg);
+      default:
+        return console.log(date + ': ' + msg);
+    }
   },
   error(error: any) {
-    process.env.NODE_ENV !== 'test' && console.error(error);
+    process.env.NODE_ENV === 'development' && console.error(error);
   },
   info(info: any) {
-    AppConfigs.IS_DEV && console.log(info);
+    process.env.NODE_ENV === 'development' && console.info(info);
   },
 };
+
+export const LogService = Logger;
