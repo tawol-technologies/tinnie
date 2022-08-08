@@ -11,6 +11,7 @@ export enum ResponseMessage {
     PIN_CHANGED = 'Pin changed successfully',
     PASSWORD_RESET = 'Your Password has been updated',
     PASSWORD_CHANGED = 'Password changed successfully',
+    RECENT_PASSWORD = 'You can\'t use a recently used password ',
     LOGIN_SUCCEED = 'Login successful',
     INVALID_CREDENTIALS = 'Invalid credential',
     BEARER_AUTH_REQUIRED = 'Authorization does not start with Bearer',
@@ -26,5 +27,6 @@ export enum ResponseMessage {
     UNIMPLEMENTED_FEATURE = 'Feature not implemented',
     INSUFFICIENT_FUND = 'Insufficient Fund',
     DATA_FETCHED = 'Data Fetched',
+    OTP_SENT = 'OTP sent, kindly check your email',
     OK = 'Successful',
 }

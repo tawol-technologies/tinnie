@@ -1,8 +1,8 @@
-import {NextFunction, Request, Response} from 'express';
+import {Request, Response} from 'express';
 import CustomError from './CustomError';
 import {ResponseService} from './ResponseService';
 
-const CustomErrorHandler = (err: unknown, _req: Request, res: Response, _next: NextFunction) => {
+const CustomErrorHandler = (err: unknown, _req: Request, res: Response) => {
   ResponseService.builder(res, CustomError.get(err));
 };
 export default CustomErrorHandler;
