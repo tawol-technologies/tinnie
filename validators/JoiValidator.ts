@@ -1,11 +1,11 @@
 import {CustomHelpers, LanguageMessages} from 'joi';
-import {ErrorMessage} from './ErrorMessage';
+import {ErrorMessage} from '../enums/ErrorMessage';
 
 export class JoiValidator {
   static validateNumber(length: number, value: string, helper: CustomHelpers) {
     const num = Number.parseInt(value);
     if (num.toString().length !== length) {
-      return helper.message(ErrorMessage.INCOMPLETE_POST_CODE as unknown as LanguageMessages);
+      return helper.message((ErrorMessage.WRONG_PIN + length) as unknown as LanguageMessages);
     }
     return value;
   }

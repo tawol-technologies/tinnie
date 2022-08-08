@@ -2,5 +2,5 @@
 /* eslint-disable quotes */
 export enum ErrorMessage {
     INCOMPLETE_POST_CODE = "Postal code should be 6 digit length",
-    MUST_BE_NUMBER = ''
+    WRONG_PIN = 'The length of the pin shoud be '
 }

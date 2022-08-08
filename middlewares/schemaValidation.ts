@@ -1,7 +1,5 @@
 import {Request, Response, NextFunction} from 'express';
 import Joi from 'joi';
-import ResponseError from '../response/ResponseError';
-import {ResponseService} from '../response/ResponseService';
 
 export const schemaValidationMDW = (schema: Joi.Schema,
     type?: 'body' | 'params' | 'query') =>
@@ -24,9 +22,8 @@ export const schemaValidationMDW = (schema: Joi.Schema,
     }
     const {error} = schema.validate(reqData);
     if (error) {
-      ResponseService.sendError(res,
-          new ResponseError(error.details[0].message + ` in the ${type}`, 400));
-      return;
+      error.message = error.details[0].message + ` in the ${type}`;
+      next(error);
     }
     reqData;
     next();

@@ -23,7 +23,7 @@ export class ResponseBuilder {
     return this;
   }
 
-  ok(message: string, data: unknown): ResponseBuilder {
+  ok(message: string, data?: unknown): ResponseBuilder {
     this.hasError = false;
     this.message = message;
     this.data = data;
