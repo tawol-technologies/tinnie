@@ -1,4 +1,5 @@
-import {Response} from 'express';
+import {NextFunction, Response} from 'express';
+import CustomError from './CustomError';
 import {ResponseBuilder} from './ResponseBody';
 import ResponseError from './ResponseError';
 
@@ -19,6 +20,10 @@ export const ResponseService = {
   sendError(response: Response, error: ResponseError | any) {
     response.status(error.status ?? 500)
         .json(responseFormat(true, null, error.message));
+  },
+
+  throwError(next: NextFunction, error: CustomError | ResponseError | any) {
+    next(error);
   },
 
   sendSuccess(response:Response, data: IResponseFormat) {
