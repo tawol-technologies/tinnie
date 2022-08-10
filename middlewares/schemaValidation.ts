@@ -1,9 +1,11 @@
 import {Request, Response, NextFunction} from 'express';
 import Joi from 'joi';
+import {HttpStatus} from '../response/HttpStatus';
+import ResponseError from '../response/ResponseError';
 
 export const schemaValidationMDW = (schema: Joi.Schema,
     type?: 'body' | 'params' | 'query') =>
-  (req: Request, res: Response, next: NextFunction) => {
+  (req: Request, _res: Response, next: NextFunction) => {
     let reqData;
     type = type ?? 'body';
     switch (type) {
@@ -22,8 +24,7 @@ export const schemaValidationMDW = (schema: Joi.Schema,
     }
     const {error} = schema.validate(reqData);
     if (error) {
-      error.message = error.details[0].message + ` in the ${type}`;
-      next(error);
+      next(new ResponseError(error.details[0].message + ` in the ${type}`, HttpStatus.BAD_REQUEST));
     }
     reqData;
     next();
