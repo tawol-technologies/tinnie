@@ -35,4 +35,11 @@ export class JoiValidator {
     }
     return value;
   }
+
+  static gender(value: string, helper: CustomHelpers) {
+    if (value.length === 6 || value.length === 4) {
+      return value;
+    }
+    return JoiValidator.sendMessage(ErrorMessage.GENDER_LENGTH, helper);
+  }
 }

@@ -1,9 +1,11 @@
-export default abstract class<T> {
-  create?(entity: T): Promise<T | null>;
-  update?(id: string, entity: T): Promise<T | null>;
-  delete?(id: string): Promise<T | null>;
-  getById?(id: string): Promise<T | null>;
-  getAll?(): Promise<Array<T> | null>;
+export default abstract class<T, Q = Record<string, unknown>> {
+  abstract save(entity: T): any;
+  saveAll?(entities: T[]): any;
+  abstract update(id: string, entity: T | any): any;
+  softDelete?(id: string): any;
+  delete?(id: string): any;
+  abstract getById?(id: string): any;
+  abstract getAll(query: Q, page: number, size: number): any;
   find?(query: Record<string, any>): Promise<Array<T> | null>;
-  findOne?(query: Record<string, any>): Promise<T | null>;
+  findOne?(query: Record<string, any>): any;
 }

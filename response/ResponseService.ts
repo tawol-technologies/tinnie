@@ -24,6 +24,7 @@ export const ResponseService = {
 
   throwError(next: NextFunction, error: CustomError | ResponseError | any) {
     next(error);
+    return;
   },
 
   sendSuccess(response:Response, data: IResponseFormat) {

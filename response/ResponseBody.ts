@@ -23,9 +23,9 @@ export class ResponseBuilder {
     return this;
   }
 
-  ok(message: string, data?: unknown): ResponseBuilder {
+  ok(message?: string, data?: unknown): ResponseBuilder {
     this.hasError = false;
-    this.message = message;
+    this.message = message ?? ResponseMessage.OK;
     this.data = data;
     this.statusCode = HttpStatus.OK;
     return this;
