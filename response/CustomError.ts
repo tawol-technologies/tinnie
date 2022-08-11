@@ -1,5 +1,6 @@
 import {HttpStatus} from './HttpStatus';
 import {ResponseBuilder} from './ResponseBody';
+import {ResponseMessage} from './ResponseMessage';
 
 export default class CustomError extends Error {
   status: number;
@@ -15,5 +16,13 @@ export default class CustomError extends Error {
         true, error.message as string, null,
         status ?? error.status ?? HttpStatus.INTERNAL_SERVER_ERROR
     );
+  }
+
+  static alreadyExist() {
+    return new CustomError(ResponseMessage.ALREADY_EXIST, HttpStatus.CONFLICT);
+  }
+
+  static notExist() {
+    return new CustomError(ResponseMessage.NOT_EXIST, HttpStatus.CONFLICT);
   }
 }

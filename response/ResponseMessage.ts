@@ -5,6 +5,7 @@ export enum ResponseMessage {
     CREATED = 'Successfully created',
     ERROR = 'Internal server error',
     ALREADY_EXIST = 'Already exist',
+    NOT_EXIST = 'Not exist',
     ACCESS_DENIED = 'Access denied',
     PIN_CREATED = 'Pin created successfully',
     WRONG_PIN = 'Invalid pin',
