@@ -30,7 +30,7 @@ export class JoiValidator {
 
   static phoneNumber(value: string, helper: CustomHelpers) {
     const match = value.match(/\d/g);
-    if (!match || match.length < 9) {
+    if (!match || match[0].length < 9) {
       return JoiValidator.sendMessage(ErrorMessage.WRONG_PHONE_NUMBER, helper);
     }
     return value;
@@ -41,5 +41,20 @@ export class JoiValidator {
       return value;
     }
     return JoiValidator.sendMessage(ErrorMessage.GENDER_LENGTH, helper);
+  }
+
+  static percentage(value: number, helper: CustomHelpers) {
+    if (value < 0 || value > 100) {
+      return JoiValidator.sendMessage(ErrorMessage.MUST_BE_PERCENTAGE, helper);
+    }
+    return value;
+  }
+
+  static couponCode(value: string, helper: CustomHelpers) {
+    const match = value.match(/^[a-zA-Z0-9]*/g);
+    if (!match || match[0].length < 6) {
+      return JoiValidator.sendMessage(ErrorMessage.MUST_BE_COUPON_CODE, helper);
+    }
+    return value.toUpperCase();
   }
 }
