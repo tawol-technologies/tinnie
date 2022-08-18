@@ -14,7 +14,9 @@ export default abstract class {
   static async getAll?(
       query: Record<string, unknown> | any,
       page: number,
-      size: number): Promise<ResponseBuilder>;
+      size: number,
+      others?: any): Promise<ResponseBuilder>;
   static async getOne?(
-      id: string): Promise<ResponseBuilder>;
+      id: string,
+      others?: any): Promise<ResponseBuilder>;
 }
