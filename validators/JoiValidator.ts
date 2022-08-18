@@ -59,7 +59,7 @@ export class JoiValidator {
   }
 
   static emailAddress(value: string, helper: CustomHelpers) {
-    const match = value.match(/^[a-zA-Z0-9]_@.*/g);
+    const match = value.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g);
     if (!match || match[0].length < 6) {
       return JoiValidator.sendMessage(ErrorMessage.NOT_VALID_EMAIL, helper);
     }
