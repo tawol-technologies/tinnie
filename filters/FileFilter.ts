@@ -1,7 +1,16 @@
 import {Request} from 'express';
+import {IFileError} from '../interfaces/IFileProcessing';
 import MessageContent from '../response/MessageContent';
 
 export default class {
+  static buildError(message: string, file: Express.Multer.File): IFileError {
+    return {
+      message: message,
+      fieldName: file.fieldname,
+      originalName: file.originalname,
+    };
+  }
+
   /**
      *  Accept only images
      *
@@ -12,7 +21,7 @@ export default class {
      */
   static image(_req: Request, file: Express.Multer.File, callback: (...args: any) => void): any {
     if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
-      return callback(new Error(MessageContent.fileTypeError('image')), false);
+      return callback(this.buildError(MessageContent.fileTypeError('image'), file), false);
     }
     return callback(null, true);
   }
@@ -26,7 +35,7 @@ export default class {
      */
   static video(_req: Request, file: Express.Multer.File, callback: (...args: any) => void): any {
     if (!file.originalname.match(/\.(mp4|MP4)$/)) {
-      return callback(new Error(MessageContent.fileTypeError('video')), false);
+      return callback(this.buildError(MessageContent.fileTypeError('video'), file), false);
     }
     return callback(null, true);
   }
@@ -40,7 +49,7 @@ export default class {
      */
   static doc(_req: Request, file: Express.Multer.File, callback: (...args: any) => void): any {
     if (!file.originalname.match(/\.(doc|DOC|docx|DOCX|pdf|PDF)$/)) {
-      return callback(new Error(MessageContent.fileTypeError('document')), false);
+      return callback(this.buildError(MessageContent.fileTypeError('document'), file), false);
     }
     return callback(null, true);
   }
@@ -57,7 +66,7 @@ export default class {
       file: Express.Multer.File,
       callback: (...args: any) => void): any {
     if (!file.originalname.match(/\.(xls|XLS|xlsx|XLSX)$/)) {
-      return callback(new Error(MessageContent.fileTypeError('spreadsheet')), false);
+      return callback(this.buildError(MessageContent.fileTypeError('spreadsheet'), file), false);
     }
     return callback(null, true);
   }
