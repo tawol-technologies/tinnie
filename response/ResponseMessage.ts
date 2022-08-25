@@ -34,5 +34,8 @@ export enum ResponseMessage {
     OTP_SENT = 'OTP sent, kindly check your email',
     BUSINESS_NOT_MATCHED = 'Business not found on the user profile',
     NOT_INITIATE_RESET_PASSWORD = 'You have not intiate password reset',
+    LOGO_REQUIRED = 'Logo file is required',
+    CAC_DOC_REQUIRED = 'Corporate Affair Commission document is required',
+    TIN_DOC_REQUIRED = 'Tax Identification Number document is required',
     OK = 'Successful',
 }

@@ -1,10 +1,7 @@
 import {NextFunction, Request, RequestHandler, Response} from 'express';
 import FileFilter from '../filters/FileFilter';
-import MessageContent from '../response/MessageContent';
-import {ResponseService} from '../response/ResponseService';
 import {FileTypeEnum} from '../enums/FileTypeEnum';
 import {HttpStatus} from '../response/HttpStatus';
-import {LogService} from '../log/LogService';
 
 export const getFileFilter = (fileType: FileTypeEnum) => {
   switch (fileType) {
@@ -23,7 +20,7 @@ export const getFileFilter = (fileType: FileTypeEnum) => {
 };
 
 export const resBuilder = (fieldName: string, message: string): string => {
-  return fieldName.toUpperCase() + ':   ' + message;
+  return fieldName.toUpperCase() + ': ' + message;
 };
 
 
@@ -33,18 +30,11 @@ const doMulterFilter = (
     res: Response,
     next: NextFunction,
     isLastIndex: boolean) => {
-  _multer(req, res, (err: any) => {
-    const fieldName = req.file?.fieldname ?? 'NO_FILE';
-    if (err) {
-      LogService.error(err);
-      err.message = resBuilder(fieldName, err.message);
-      ResponseService.sendError(res, err);
-    } else if (!req.file && req.files?.length === 0) {
-      ResponseService.sendError(res, {
-        message: resBuilder(fieldName, MessageContent.NO_FILE_SELECTED),
-        status: HttpStatus.BAD_REQUEST,
-      });
-      return;
+  _multer(req, res, (error: any) => {
+    if (error) {
+      error.message = resBuilder(error.fieldName ?? error.field, error.message);
+      error.status = HttpStatus.BAD_REQUEST;
+      next(error);
     } else {
       if (isLastIndex) {
         next();
@@ -71,7 +61,7 @@ export function fileUploadValidationsMDW(
   for (const _multer of _multers) {
     if (_multers.lastIndexOf(_multer) === (_multers.length-1)) {
       doMulterFilter(_multer, req, res, next, true);
-      // return;
+      return;
     } else {
       doMulterFilter(_multer, req, res, next, false);
     }

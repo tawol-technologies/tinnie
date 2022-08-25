@@ -1,20 +1,19 @@
 
 interface IObjectFound<T = any> {
   index: number;
-  data: T
+  data: T;
 
 }
 
 export default class {
-  static findObject<T = any>(data: T[], key: string, value: unknown):
+  static findObject<T = any>(data: Record<string, unknown>[], key: string, value: unknown):
   IObjectFound<T> | undefined {
     let res;
-    for (let i = 0; i < data.length; i++) {
-      const element = data[i] as Record<string, unknown>;
+    for (const element of data) {
       if (element[key] === value) {
         return {
           index: 1,
-          data: (res = element) as T,
+          data: element as T,
         };
       }
     }
