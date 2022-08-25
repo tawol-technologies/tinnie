@@ -21,10 +21,10 @@ export const Logger = {
     }
   },
   error(error: any) {
-    process.env.NODE_ENV === 'development' && console.error(error);
+    process.env.NODE_ENV === 'production' && console.error(error);
   },
   info(info: any) {
-    process.env.NODE_ENV === 'development' && console.info(info);
+    process.env.NODE_ENV !== 'production' && console.info(info);
   },
 };
 
