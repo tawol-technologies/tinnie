@@ -30,7 +30,7 @@ export class JoiValidator {
 
   static phoneNumber(value: string, helper: CustomHelpers) {
     const match = value.match(/\d/g);
-    if (!match || match[0].length >= 9) {
+    if (!match || match.length < 9) {
       return JoiValidator.sendMessage(ErrorMessage.WRONG_PHONE_NUMBER, helper);
     }
     return value;
