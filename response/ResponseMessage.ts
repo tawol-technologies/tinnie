@@ -38,4 +38,5 @@ export enum ResponseMessage {
     CAC_DOC_REQUIRED = 'Corporate Affair Commission document is required',
     TIN_DOC_REQUIRED = 'Tax Identification Number document is required',
     OK = 'Successful',
+    OTP_NOT_FOUND = 'Otp not found',
 }
