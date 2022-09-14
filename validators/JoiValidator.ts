@@ -65,4 +65,11 @@ export class JoiValidator {
     }
     return value.toLowerCase();
   }
+
+  static password(value: string, helper: CustomHelpers) {
+    const match = value.match(/^[a-zA-Z0-9_@.]*/g);
+    if (!match || match[0].length < 8) {
+      return JoiValidator.sendMessage(ErrorMessage.PASSWORD_NOT_COMPATIBLE, helper);
+    }
+  }
 }

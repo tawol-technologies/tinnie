@@ -39,4 +39,5 @@ export enum ResponseMessage {
     TIN_DOC_REQUIRED = 'Tax Identification Number document is required',
     OK = 'Successful',
     OTP_NOT_FOUND = 'Otp not found',
+    REGISTERED = 'Account successfully registered, check your email for verification',
 }
