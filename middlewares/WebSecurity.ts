@@ -6,7 +6,7 @@ import {ResponseService} from '../response/ResponseService';
 import {TCustomTokenVerificationCallback} from '../types/validators';
 import JwtValidator from '../validators/JwtValidator';
 
-export default class {
+export default class WebSecurity {
   whitelistPaths: string[];
   tokenKey: string;
   cookieKey: string;
