@@ -36,14 +36,14 @@ export default class WebSecurity {
         if (!bearerVal || !bearerVal.startsWith('Bearer ')) {
           return ResponseService.builder(
               res,
-              ResponseBuilder.singleton.unauthorized(ResponseMessage.BEARER_AUTH_REQUIRED)
+              ResponseBuilder.getInstance().unauthorized(ResponseMessage.BEARER_AUTH_REQUIRED)
           );
         }
         const token = bearerVal.substring(7);
         if (!token) {
           return ResponseService.builder(
               res,
-              ResponseBuilder.singleton.unauthorized(ResponseMessage.TOKEN_REQUIRED)
+              ResponseBuilder.getInstance().unauthorized(ResponseMessage.TOKEN_REQUIRED)
           );
         }
 

@@ -40,4 +40,5 @@ export enum ResponseMessage {
     OK = 'Successful',
     OTP_NOT_FOUND = 'Otp not found',
     REGISTERED = 'Account successfully registered, check your email for verification',
+    RESTRICTED = '',
 }
