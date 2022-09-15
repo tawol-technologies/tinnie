@@ -12,7 +12,7 @@ export default class CustomError extends Error {
   }
 
   static get(error: any | Error, status?: number): ResponseBuilder {
-    return ResponseBuilder.singleton.custom(
+    return ResponseBuilder.getInstance().custom(
         true, error.message as string, null,
         status ?? error.status ?? HttpStatus.INTERNAL_SERVER_ERROR
     );
@@ -24,5 +24,9 @@ export default class CustomError extends Error {
 
   static notExist() {
     return new CustomError(ResponseMessage.NOT_EXIST, HttpStatus.CONFLICT);
+  }
+
+  static restricted() {
+    return new CustomError(ResponseMessage.RESTRICTED, HttpStatus.FORBIDDEN);
   }
 }

@@ -4,9 +4,9 @@ import {ResponseMessage} from './ResponseMessage';
 export class ResponseBuilder {
   hasError: boolean;
   message: string;
-  data: unknown;
+  data: any;
   statusCode: number;
-  static singleton: ResponseBuilder = new ResponseBuilder();
+  static instance: ResponseBuilder;
 
   constructor() {
     this.hasError = false;
@@ -15,7 +15,14 @@ export class ResponseBuilder {
     this.statusCode = HttpStatus.OK;
   }
 
-  custom(hasError: boolean, message: string, data: unknown, statusCode: HttpStatus) {
+  static getInstance() {
+    if (!this.instance) {
+      this.instance = new ResponseBuilder();
+    }
+    return this.instance;
+  }
+
+  custom(hasError: boolean, message: string, data: any, statusCode: HttpStatus) {
     this.hasError = hasError;
     this.message = message;
     this.data = data;
@@ -23,7 +30,7 @@ export class ResponseBuilder {
     return this;
   }
 
-  ok(message?: string, data?: unknown): ResponseBuilder {
+  ok(message?: string, data?: any): ResponseBuilder {
     this.hasError = false;
     this.message = message ?? ResponseMessage.OK;
     this.data = data;
@@ -31,7 +38,7 @@ export class ResponseBuilder {
     return this;
   }
 
-  error(message?: string, data?: unknown): ResponseBuilder {
+  error(message?: string, data?: any): ResponseBuilder {
     this.hasError = true;
     this.message = message == null? ResponseMessage.ERROR : message;
     this.data = data;
@@ -39,7 +46,7 @@ export class ResponseBuilder {
     return this;
   }
 
-  created(message?: string, data?: unknown): ResponseBuilder {
+  created(message?: string, data?: any): ResponseBuilder {
     this.hasError = false;
     this.message = message == null? ResponseMessage.CREATED : message;
     this.data = data;
@@ -47,7 +54,7 @@ export class ResponseBuilder {
     return this;
   }
 
-  alreadyExist(data?: unknown): ResponseBuilder {
+  alreadyExist(data?: any): ResponseBuilder {
     this.hasError = true;
     this.message = ResponseMessage.ALREADY_EXIST;
     this.data = data;
