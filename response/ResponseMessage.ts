@@ -1,6 +1,9 @@
 /* eslint-disable no-unused-vars */
 export enum ResponseMessage {
     ACCOUNT_UPDATED = 'Account updated',
+    ACCOUNT_VERIFIED = 'Account verified',
+    ALREADY_VERIFIED = 'Already verified',
+    VERIFICATION_LINK_SENT = 'Verification link sent',
     BUSINESS_PROFILE_UPDATED = 'Business profile updated',
     CREATED = 'Successfully created',
     ERROR = 'Internal server error',
@@ -40,5 +43,6 @@ export enum ResponseMessage {
     OK = 'Successful',
     OTP_NOT_FOUND = 'Otp not found',
     REGISTERED = 'Account successfully registered, check your email for verification',
-    RESTRICTED = '',
+    RESTRICTED = 'You are restricted',
+    LINK_EXPIRED = 'Link expired',
 }
