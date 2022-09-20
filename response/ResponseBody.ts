@@ -94,3 +94,6 @@ export class ResponseBuilder {
     return this;
   }
 }
+
+const ResponseBody = ResponseBuilder;
+export default ResponseBody;

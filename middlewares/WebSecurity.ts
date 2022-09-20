@@ -3,7 +3,7 @@ import string from '../others/string';
 import {ResponseBuilder} from '../response/ResponseBody';
 import {ResponseMessage} from '../response/ResponseMessage';
 import {ResponseService} from '../response/ResponseService';
-import {TCustomTokenVerificationCallback} from '../types/validators';
+import {TAdditionalCheck, TCustomTokenVerificationCallback} from '../types/validators';
 import JwtValidator from '../validators/JwtValidator';
 
 export default class WebSecurity {
@@ -13,14 +13,25 @@ export default class WebSecurity {
   tokenHeaderKey = 'Authorization';
   secretHeaderKey = 'x-secret-key';
   customTokenVerification: TCustomTokenVerificationCallback | undefined;
+  additionalCheck?: TAdditionalCheck;
 
   constructor(
       whitelistPath: string[],
       tokenKey: string,
-      cookieKey: string) {
+      cookieKey: string,
+      additionalcheck?: TAdditionalCheck) {
     this.whitelistPaths = whitelistPath;
     this.tokenKey = tokenKey;
     this.cookieKey = cookieKey;
+    this.additionalCheck = additionalcheck;
+  }
+
+  getTokenData(token: string) {
+    if (this.customTokenVerification) {
+      return this.customTokenVerification(token);
+    } else {
+      return JwtValidator.verifyToken(token, this.tokenKey);
+    }
   }
 
   authenticate = (req: Request, res: Response, next: NextFunction) => {
@@ -31,6 +42,7 @@ export default class WebSecurity {
 
     try {
       const cookieToken = req.signedCookies[this.cookieKey];
+      let tokenData;
       if (!cookieToken) {
         const bearerVal = req.headers[this.tokenHeaderKey] as string;
         if (!bearerVal || !bearerVal.startsWith('Bearer ')) {
@@ -47,18 +59,11 @@ export default class WebSecurity {
           );
         }
 
-        if (this.customTokenVerification) {
-          this.customTokenVerification(token);
-        } else {
-          JwtValidator.verifyToken(token, this.tokenKey);
-        }
+        tokenData = this.getTokenData(token);
       } else {
-        if (this.customTokenVerification) {
-          this.customTokenVerification(cookieToken);
-        } else {
-          JwtValidator.verifyToken(cookieToken, this.tokenKey);
-        }
+        tokenData = this.getTokenData(cookieToken);
       }
+      this.additionalCheck && this.additionalCheck(tokenData, req);
       return next();
     } catch (error) {
       return ResponseService.sendError(res, error);
