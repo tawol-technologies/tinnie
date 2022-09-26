@@ -1,17 +1,25 @@
 import crypto from 'crypto-js';
 
 const defaultIv = '3333288889248111';
+const defaultKey = 'ttl-cry-default-key';
 export default class CryptoJs {
-  static encrypt(payload: any, key: string, iv = defaultIv) {
-    return crypto.AES.encrypt(JSON.stringify(payload), key, {
+  static encrypt(payload: any, key = defaultKey, iv = defaultIv) {
+    if (typeof payload !== 'string') {
+      payload = JSON.stringify(payload);
+    }
+    return crypto.AES.encrypt(payload, key, {
       iv: crypto.enc.Hex.parse(iv),
     }).toString();
   }
 
-  static decrypt(payload: string, key: string, iv = defaultIv) {
-    const bytes = crypto.AES.decrypt(payload, key, {
+  static decrypt(encrypted: string, key = defaultKey, iv = defaultIv) {
+    const decryptedPayload = crypto.AES.decrypt(encrypted, key, {
       iv: crypto.enc.Hex.parse(iv),
-    });
-    return JSON.parse(bytes.toString(crypto.enc.Utf8));
+    }).toString(crypto.enc.Utf8);
+    try {
+      return JSON.parse(decryptedPayload);
+    } catch (error) {
+      return decryptedPayload;
+    }
   }
 }
