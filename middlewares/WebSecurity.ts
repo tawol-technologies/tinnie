@@ -11,6 +11,7 @@ export default class WebSecurity {
   tokenKey: string;
   cookieKey: string;
   tokenHeaderKey = 'Authorization';
+  accessHeaderKey = 'x-api-key';
   secretHeaderKey = 'x-secret-key';
   customTokenVerification: TCustomTokenVerificationCallback | undefined;
   additionalCheck?: TAdditionalCheck;
@@ -72,6 +73,10 @@ export default class WebSecurity {
 
   getSecretKeyValue = (req: Request) => {
     return req.headers[this.secretHeaderKey] as string;
+  };
+
+  getApiKeyValue = (req: Request) => {
+    return req.headers[this.accessHeaderKey] as string;
   };
 }
 
