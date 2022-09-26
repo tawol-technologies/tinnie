@@ -16,9 +16,10 @@ export default class CryptoJs {
     const decryptedPayload = crypto.AES.decrypt(encrypted, key, {
       iv: crypto.enc.Hex.parse(iv),
     }).toString(crypto.enc.Utf8);
-    if (typeof decryptedPayload === 'string') {
+    try {
+      return JSON.parse(decryptedPayload);
+    } catch (error) {
       return decryptedPayload;
     }
-    return JSON.parse(decryptedPayload);
   }
 }

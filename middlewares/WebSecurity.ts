@@ -36,7 +36,7 @@ export default class WebSecurity {
 
   authenticate = (req: Request, res: Response, next: NextFunction) => {
     // Give access to unblocked APIs
-    if (string.isUrlMatch(this.whitelistPaths, req.path)) {
+    if (string.isUrlMatch(this.whitelistPaths, req.originalUrl)) {
       return next();
     }
 

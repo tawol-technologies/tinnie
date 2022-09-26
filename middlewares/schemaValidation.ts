@@ -34,7 +34,6 @@ export const schemaValidationMDW = (schema: Joi.Schema,
 export const schemaMulterValidationMDW = (schema: Joi.Schema,
     key = 'payload') =>
   (req: Request, _res: Response, next: NextFunction) => {
-    console.log(req.files);
     const reqData = req.body[key]? JSON.parse(req.body[key]) : {};
     const {error} = schema.validate(reqData);
     if (error) {
