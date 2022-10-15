@@ -8,4 +8,5 @@ export enum HttpStatus {
     INTERNAL_SERVER_ERROR = 500,
     UNAUTHORIZED = 401,
     NOT_FOUND = 404,
+    NOT_ACCEPTABLE = 406,
 }

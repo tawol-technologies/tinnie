@@ -11,6 +11,7 @@ export enum ResponseMessage {
     NOT_EXIST = 'Not exist',
     ACCESS_DENIED = 'Access denied',
     UNAUTHORIZED = 'Unathorized',
+    BAD_REQUEST = 'Bad request',
     PIN_CREATED = 'Pin created successfully',
     WRONG_PIN = 'Invalid pin',
     WRONG_PASSWORD = 'Invalid Password',
@@ -28,6 +29,8 @@ export enum ResponseMessage {
     USERNAME_NOT_FOUND = 'Username not found',
     BAD_DATA = 'Incompatible data sent. Check your payload, params or path variables',
     TRANSACTION_COMPLETED_INITIALLY = 'Transaction completed initially',
+    // eslint-disable-next-line max-len
+    TRANSACTION_COMPLETED_BUT_CARD_EXIST = `Transaction completed but couldn't save the card because it already exist`,
     TRANSACTION_COMPLETED = 'Transaction completed',
     INVALID_REFERENCE = 'Invalid Reference',
     PAYMENT_NOT_ACCEPTABLE = 'Integrity of your payment cannot be proved',

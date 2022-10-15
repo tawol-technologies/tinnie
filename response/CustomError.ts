@@ -29,4 +29,12 @@ export default class CustomError extends Error {
   static restricted() {
     return new CustomError(ResponseMessage.RESTRICTED, HttpStatus.FORBIDDEN);
   }
+
+  static badRequest(msg?: string) {
+    return new CustomError(msg ?? ResponseMessage.BAD_REQUEST, HttpStatus.FORBIDDEN);
+  }
+
+  static conflict(msg: string) {
+    return new CustomError(msg, HttpStatus.CONFLICT);
+  }
 }

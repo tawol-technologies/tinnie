@@ -31,4 +31,8 @@ export default class {
     });
     return res;
   }
+
+  static maskCard(last4: number) {
+    return '**** **** **** ' + last4;
+  }
 }
