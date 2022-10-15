@@ -1,6 +1,7 @@
 import {NextFunction, Request, Response} from 'express';
 import string from '../others/string';
-import {ResponseBuilder} from '../response/ResponseBody';
+import CustomError from '../response/CustomError';
+import {HttpStatus} from '../response/HttpStatus';
 import {ResponseMessage} from '../response/ResponseMessage';
 import {ResponseService} from '../response/ResponseService';
 import {TAdditionalCheck, TCustomTokenVerificationCallback} from '../types/validators';
@@ -27,12 +28,28 @@ export default class WebSecurity {
     this.additionalCheck = additionalcheck;
   }
 
-  getTokenData(token: string) {
+  getTokenData(token?: string, req?: Request) {
+    token = token ?? (req ? this.getToken(req) : '');
     if (this.customTokenVerification) {
       return this.customTokenVerification(token);
     } else {
       return JwtValidator.verifyToken(token, this.tokenKey);
     }
+  }
+
+  getToken(req: Request): string {
+    let token = req.signedCookies[this.cookieKey];
+    if (!token) {
+      const bearerVal = req.headers[this.tokenHeaderKey] as string;
+      if (!bearerVal || !bearerVal.startsWith('Bearer ')) {
+        throw new CustomError(ResponseMessage.BEARER_AUTH_REQUIRED, HttpStatus.UNAUTHORIZED);
+      }
+      token = bearerVal.substring(7);
+      if (!token) {
+        throw new CustomError(ResponseMessage.TOKEN_REQUIRED, HttpStatus.UNAUTHORIZED);
+      }
+    }
+    return token;
   }
 
   authenticate = (req: Request, res: Response, next: NextFunction) => {
@@ -42,28 +59,7 @@ export default class WebSecurity {
     }
 
     try {
-      const cookieToken = req.signedCookies[this.cookieKey];
-      let tokenData;
-      if (!cookieToken) {
-        const bearerVal = req.headers[this.tokenHeaderKey] as string;
-        if (!bearerVal || !bearerVal.startsWith('Bearer ')) {
-          return ResponseService.builder(
-              res,
-              ResponseBuilder.getInstance().unauthorized(ResponseMessage.BEARER_AUTH_REQUIRED)
-          );
-        }
-        const token = bearerVal.substring(7);
-        if (!token) {
-          return ResponseService.builder(
-              res,
-              ResponseBuilder.getInstance().unauthorized(ResponseMessage.TOKEN_REQUIRED)
-          );
-        }
-
-        tokenData = this.getTokenData(token);
-      } else {
-        tokenData = this.getTokenData(cookieToken);
-      }
+      const tokenData = this.getTokenData(this.getToken(req));
       this.additionalCheck && this.additionalCheck(tokenData, req);
       return next();
     } catch (error) {

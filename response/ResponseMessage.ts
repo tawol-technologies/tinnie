@@ -45,4 +45,5 @@ export enum ResponseMessage {
     REGISTERED = 'Account successfully registered, check your email for verification',
     RESTRICTED = 'You are restricted',
     LINK_EXPIRED = 'Link expired',
+    WALLET_NOT_FOUND = 'Wallet not found',
 }
