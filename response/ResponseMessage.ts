@@ -9,6 +9,7 @@ export enum ResponseMessage {
     ERROR = 'Internal server error',
     ALREADY_EXIST = 'Already exist',
     NOT_EXIST = 'Not exist',
+    NOT_VERIFIED = 'Account not yet verified',
     ACCESS_DENIED = 'Access denied',
     UNAUTHORIZED = 'Unathorized',
     BAD_REQUEST = 'Bad request',
@@ -49,4 +50,6 @@ export enum ResponseMessage {
     RESTRICTED = 'You are restricted',
     LINK_EXPIRED = 'Link expired',
     WALLET_NOT_FOUND = 'Wallet not found',
+    USER_RESTRICTED = 'User is currently restricted',
+    TRANSACTION_IN_PROGRESS = 'Transaction in progress',
 }

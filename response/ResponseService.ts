@@ -1,5 +1,6 @@
 import {NextFunction, Response} from 'express';
 import CustomError from './CustomError';
+import {HttpStatus} from './HttpStatus';
 import {ResponseBuilder} from './ResponseBody';
 import ResponseError from './ResponseError';
 
@@ -42,6 +43,10 @@ export const ResponseService = {
 
   builder(response: Response, body: ResponseBuilder) {
     response.status(body.statusCode).json(body);
+  },
+
+  completed(response: Response) {
+    response.status(HttpStatus.OK).send('Completed');
   },
 
 };
