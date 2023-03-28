@@ -1,0 +1,9 @@
+{
+  "name": "@tawol-tech/tinnie",
+  "version": "1.0.0",
+  "description": "NodeJS abstractions",
+  "main": "index.ts",
+  "repository": "https://github.com/tawol-technologies/tinnie.git",
+  "author": "Ayomide Joysbright Oyediran <81700789+Oyejoysbright@users.noreply.github.com>",
+  "license": "MIT"
+}
