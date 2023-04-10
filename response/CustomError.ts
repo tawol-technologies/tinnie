@@ -14,7 +14,7 @@ export default class CustomError extends Error {
   static get(error: any | Error, status?: number): ResponseBuilder {
     return ResponseBuilder.getInstance().custom(
         true, error.message as string, null,
-        status ?? error.status ?? HttpStatus.INTERNAL_SERVER_ERROR
+        status ?? error.status ?? HttpStatus.INTERNAL_SERVER_ERROR,
     );
   }
 

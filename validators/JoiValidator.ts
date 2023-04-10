@@ -8,7 +8,7 @@ export class JoiValidator {
 
   static sendMessage(msg: string, helper: CustomHelpers) {
     return helper.message(
-      (this.getFieldName(helper) + ': '+ msg) as unknown as LanguageMessages
+      (this.getFieldName(helper) + ': '+ msg) as unknown as LanguageMessages,
     );
   }
 
