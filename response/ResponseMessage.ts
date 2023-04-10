@@ -48,4 +48,6 @@ export enum ResponseMessage {
     BAD_REQUEST = 'Bad Request',
     MISSING_CREDENTIALS = 'Missing Credentials',
     NO_SERVICE_ACCESS = 'You do not have access to this service',
+    REQUEST_BEING_PROCESSED = 'Request is being processed',
+    EXPECTATION_FAILED = 'Expectation Failed',
 }
