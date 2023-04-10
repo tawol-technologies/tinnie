@@ -45,4 +45,7 @@ export enum ResponseMessage {
     REGISTERED = 'Account successfully registered, check your email for verification',
     RESTRICTED = 'You are restricted',
     LINK_EXPIRED = 'Link expired',
+    BAD_REQUEST = 'Bad Request',
+    MISSING_CREDENTIALS = 'Missing Credentials',
+    NO_SERVICE_ACCESS = 'You do not have access to this service',
 }
