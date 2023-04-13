@@ -50,4 +50,5 @@ export enum ResponseMessage {
     NO_SERVICE_ACCESS = 'You do not have access to this service',
     REQUEST_BEING_PROCESSED = 'Request is being processed',
     EXPECTATION_FAILED = 'Expectation Failed',
+    NO_FILE_ATTACHED = 'No file attached',
 }
