@@ -72,4 +72,18 @@ export class JoiValidator {
       return JoiValidator.sendMessage(ErrorMessage.PASSWORD_NOT_COMPATIBLE, helper);
     }
   }
+
+  static otp(value: string, helper: CustomHelpers) {
+    const match = value.match(/^[0-9]{4,}/g);
+    if (!match || match[0].length < 4) {
+      return JoiValidator.sendMessage(ErrorMessage.OTP_NOT_COMPATIBLE, helper);
+    }
+  }
+
+  static UUID(value: string, helper: CustomHelpers) {
+    const match = value.match(/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/g);
+    if (!match || match[0].length < 32) {
+      return JoiValidator.sendMessage(ErrorMessage.UUID_NOT_COMPATIBLE, helper);
+    }
+  }
 }
