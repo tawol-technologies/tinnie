@@ -1,11 +1,13 @@
 /* eslint-disable no-unused-vars */
 export enum ResponseMessage {
     ACCOUNT_UPDATED = 'Account updated',
-    ACCOUNT_VERIFIED = 'Account verified',
+    ACCOUNT_VERIFIED = 'Verified',
     ALREADY_VERIFIED = 'Already verified',
     VERIFICATION_LINK_SENT = 'Verification link sent',
     BUSINESS_PROFILE_UPDATED = 'Business profile updated',
     CREATED = 'Successfully created',
+    UPDATED = 'Successfully updated',
+    DELETED = 'Successfully deleted',
     ERROR = 'Internal server error',
     ALREADY_EXIST = 'Already exist',
     NOT_EXIST = 'Not exist',
@@ -50,10 +52,5 @@ export enum ResponseMessage {
     NO_SERVICE_ACCESS = 'You do not have access to this service',
     REQUEST_BEING_PROCESSED = 'Request is being processed',
     EXPECTATION_FAILED = 'Expectation Failed',
-    INVALID_OTP_LENGTH = 'Minimum otp length should be 4',
-    OTP_GENERATED = 'Otp generated. Kindly check your ',
-    OTP_VALIDATED = 'Otp is valid',
-    OTP_MEDIUM_NOT_AVAILABLE = 'Otp medium not available',
-    MEDIUM_REQUIRED = 'Otp medium and its corresponding field is required',
-    INVALID_OTP = 'Invalid otp',
+    INVALID_ID = 'No document exist with the specified ID',
 }

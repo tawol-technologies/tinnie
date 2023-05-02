@@ -46,14 +46,6 @@ export class ResponseBuilder {
     return this;
   }
 
-  expectationFailed(message?: string, data?: any): ResponseBuilder {
-    this.hasError = true;
-    this.message = message == null? ResponseMessage.EXPECTATION_FAILED : message;
-    this.data = data;
-    this.statusCode = HttpStatus.EXPECTATION_FAILED;
-    return this;
-  }
-
   created(message?: string, data?: any): ResponseBuilder {
     this.hasError = false;
     this.message = message == null? ResponseMessage.CREATED : message;
@@ -102,6 +94,3 @@ export class ResponseBuilder {
     return this;
   }
 }
-
-const ResponseBody = ResponseBuilder;
-export default ResponseBody;

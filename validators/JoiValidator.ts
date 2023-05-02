@@ -1,5 +1,6 @@
 import {CustomHelpers, LanguageMessages} from 'joi';
 import {ErrorMessage} from '../enums/ErrorMessage';
+import {isValidObjectId} from 'mongoose';
 
 export class JoiValidator {
   static getFieldName(helper: CustomHelpers) {
@@ -81,9 +82,16 @@ export class JoiValidator {
   }
 
   static UUID(value: string, helper: CustomHelpers) {
-    const match = value.match(/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/g);
+    const match = value
+        .match(/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/g);
     if (!match || match[0].length < 32) {
       return JoiValidator.sendMessage(ErrorMessage.UUID_NOT_COMPATIBLE, helper);
+    }
+  }
+
+  static ObjectId(value: string, helper: CustomHelpers) {
+    if (!isValidObjectId(value)) {
+      return JoiValidator.sendMessage(ErrorMessage.OBJECT_ID_NOT_COMPATIBLE, helper);
     }
   }
 }
