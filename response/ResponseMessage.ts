@@ -50,6 +50,7 @@ export enum ResponseMessage {
     NO_SERVICE_ACCESS = 'You do not have access to this service',
     REQUEST_BEING_PROCESSED = 'Request is being processed',
     EXPECTATION_FAILED = 'Expectation Failed',
+    NO_FILE_UPLOADED = 'No file uploaded',
     INVALID_OTP_LENGTH = 'Minimum otp length should be 4',
     OTP_GENERATED = 'Otp generated. Kindly check your ',
     OTP_VALIDATED = 'Otp is valid',
