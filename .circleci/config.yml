@@ -16,11 +16,11 @@ jobs:
           root: ~/project
           paths:
             - ./dist
-      - run:
-          name: Update Version
-          command: |
-            npm version 1.0.$CIRCLE_BUILD_NUM
-            git push --follow-tags
+      # - run:
+      #     name: Update Version
+      #     command: |
+      #       npm version 1.0.$CIRCLE_BUILD_NUM
+      #       git push --follow-tags
       - run:
           name: Copy Package.json
           command: cp package.json dist/package.json
@@ -44,11 +44,11 @@ jobs:
           root: ~/project
           paths:
             - ./dist
-      - run:
-          name: Update Version
-          command: |
-            npm version 0.1.$CIRCLE_BUILD_NUM
-            git push --follow-tags
+      # - run:
+      #     name: Update Version
+      #     command: |
+      #       npm version 0.1.$CIRCLE_BUILD_NUM
+      #       git push --follow-tags
       - run:
           name: Copy Package.json
           command: cp package.json dist/package.json
