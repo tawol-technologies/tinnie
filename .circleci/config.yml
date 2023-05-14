@@ -1,0 +1,36 @@
+version: 2.1
+orbs:
+  docker: circleci/node@5.0.2
+jobs:
+  checkout-build-publish:
+    working_directory: ~/project
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          name: Build
+          command: yarn build
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - ./dist
+      - run:
+          name: Copy Package.json
+          command: cp package.json dist/package.json
+      - run:
+          name: Publish
+          command: |
+            npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+            npm publish
+workflows:
+  publish:
+    jobs:
+      - checkout-build-publish:
+          context:
+            - Credentials
+          filters:
+            branches:
+              only:
+                - main
