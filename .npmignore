@@ -6,3 +6,4 @@ src
 babel.config.js
 tsconfig.json
 yarn.lock
+.circleci
