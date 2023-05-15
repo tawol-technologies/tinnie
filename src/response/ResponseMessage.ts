@@ -53,4 +53,10 @@ export enum ResponseMessage {
     REQUEST_BEING_PROCESSED = 'Request is being processed',
     EXPECTATION_FAILED = 'Expectation Failed',
     INVALID_ID = 'No document exist with the specified ID',
+    INVALID_OTP_LENGTH = 'Invalid OTP length',
+    OTP_MEDIUM_NOT_AVAILABLE = 'OTP medium not available',
+    MEDIUM_REQUIRED = 'Atleast one medium is required',
+    OTP_GENERATED = 'Otp generated',
+    INVALID_OTP = 'Invalid OTP',
+    OTP_VALIDATED = 'Otp validated',
 }
