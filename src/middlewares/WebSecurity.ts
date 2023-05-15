@@ -5,7 +5,6 @@ import {ResponseMessage} from '../response/ResponseMessage';
 import {ResponseService} from '../response/ResponseService';
 import {TCustomTokenVerificationCallback} from '../types/validators';
 import JwtValidator from '../validators/JwtValidator';
-import { LogService } from '../log/LogService';
 
 export default class WebSecurity {
   whitelistPaths: string[];
@@ -32,10 +31,8 @@ export default class WebSecurity {
 
     try {
       const cookieToken = req.signedCookies[this.cookieKey];
-      LogService.info(cookieToken);
       if (!cookieToken) {
         const bearerVal = req.headers[this.tokenHeaderKey] as string;
-        LogService.info(bearerVal);
         if (!bearerVal || !bearerVal.startsWith('Bearer ')) {
           return ResponseService.builder(
               res,
