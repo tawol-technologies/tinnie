@@ -93,4 +93,12 @@ export class ResponseBuilder {
     this.statusCode = HttpStatus.UNAUTHORIZED;
     return this;
   }
+
+  expectationFailed(message?: string): ResponseBuilder {
+    this.hasError = true;
+    this.message = message ?? 'Expectaion failed';
+    this.data = null;
+    this.statusCode = HttpStatus.EXPECTATION_FAILED;
+    return this;
+  }
 }

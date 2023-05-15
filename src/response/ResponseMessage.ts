@@ -59,4 +59,5 @@ export enum ResponseMessage {
     OTP_GENERATED = 'Otp generated',
     INVALID_OTP = 'Invalid OTP',
     OTP_VALIDATED = 'Otp validated',
+    NO_FILE_UPLOADED = 'No file uploaded',
 }
