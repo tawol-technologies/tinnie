@@ -14,11 +14,20 @@ export default class {
     return `Only ${fileType} files are allowed!`;
   }
   static NO_FILE_SELECTED = 'Please select a file to upload';
+  static OTP_SUBJECT = 'One time password';
   static buildError = (error: any):IResponseFormat => {
     return {
       message: error.message,
       statusCode: error.statusCode,
       error: true,
     };
+  };
+  static getOtpMessage = (
+      customerName: string,
+      otp: number,
+      expireInMins: number,
+      sender: string
+    ):string => {
+    return '';
   };
 }
