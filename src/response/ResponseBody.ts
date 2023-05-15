@@ -102,3 +102,4 @@ export class ResponseBuilder {
     return this;
   }
 }
+export default ResponseBuilder;
