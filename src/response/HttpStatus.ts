@@ -6,5 +6,7 @@ export enum HttpStatus {
     CONFLICT = 409,
     FORBIDDEN = 403,
     INTERNAL_SERVER_ERROR = 500,
-    UNAUTHORIZED = 401
+    UNAUTHORIZED = 401,
+    SMTP_OK = 465,
+    EXPECTATION_FAILED = 417,
 }
