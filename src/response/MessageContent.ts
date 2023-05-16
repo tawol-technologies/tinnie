@@ -22,12 +22,16 @@ export default class {
       error: true,
     };
   };
-  static getOtpMessage = (
-      customerName: string,
-      otp: number,
-      expireInMins: number,
-      sender: string
-    ):string => {
-    return '';
+  static getOtpMessage = (customerName: string, otp: number, expireMins: number, sender: string) => {
+    const html = `<html>
+      <div>
+        Hello ${customerName}, <br />
+        Your one time password is: ${otp} <br />
+        Expires in ${expireMins} minutes <br /><br />
+        Thank you. <br /><br /><br />
+        - ${sender}
+      </div>
+    </html>`;
+    return html;
   };
 }
