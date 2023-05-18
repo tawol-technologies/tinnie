@@ -37,6 +37,14 @@ export class JoiValidator {
     return value;
   }
 
+  static NGNPhoneNumber(value: string, helper: CustomHelpers) {
+    const match = value.match(/234\d{10}/g);
+    if (!match) {
+      return JoiValidator.sendMessage(ErrorMessage.WRONG_PHONE_NUMBER, helper);
+    }
+    return value;
+  }
+
   static gender(value: string, helper: CustomHelpers) {
     if (value.length === 6 || value.length === 4) {
       return value;
