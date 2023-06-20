@@ -1,1 +1,0 @@
-{"version":3,"file":"LogService.d.ts","sourceRoot":"","sources":["LogService.ts"],"names":[],"mappings":"AAGA,oBAAY,OAAO;IACjB,IAAI,IAAA;IAAE,IAAI,IAAA;IAAE,KAAK,IAAA;CAClB;AAED,eAAO,MAAM,MAAM;aACR,GAAG,SAAS,OAAO;iBAcf,GAAG;eAGL,GAAG;CAGf,CAAC;AAEF,eAAO,MAAM,UAAU;aAtBZ,GAAG,SAAS,OAAO;iBAcf,GAAG;eAGL,GAAG;CAKgB,CAAC"}

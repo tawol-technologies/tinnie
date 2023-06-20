@@ -1,1 +1,0 @@
-{"version":3,"file":"MailingEx.d.ts","sourceRoot":"","sources":["MailingEx.ts"],"names":[],"mappings":"AACA,OAAO,EAAC,uBAAuB,EAAC,MAAM,uBAAuB,CAAC;AAC9D,OAAO,OAAO,MAAM,WAAW,CAAC;AAEhC,MAAM,CAAC,OAAO,OAAO,SAAU,SAAQ,OAAO;IAC5C,MAAM,CAAC,gBAAgB,CAAC,GAAG,EAAE,uBAAuB;CASrD"}
