@@ -4,7 +4,7 @@ import Mailing from './Mailing';
 
 export default class MailingEx extends Mailing {
   static verificationLink(arg: IMailingVerificationArg) {
-    const html = `<html><a href=${arg.url}?t=${arg.token}>Click to verify</a></html>`;
+    const html = `<a href=${arg.url}?t=${arg.token}>Click to verify your account</a>`;
     this.sendHTML({
       to: arg.email,
       subject: arg.subject ?? MailingSubject.ACCOUNT_VERIFICATION,
