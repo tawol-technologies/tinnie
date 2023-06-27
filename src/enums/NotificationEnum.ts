@@ -4,3 +4,7 @@ export enum OtpMediumEnum {
     EMAIL='EMAIL',
     WHATSAPP='WHATSAPP'
 }
+
+export enum OtpPurposeEnum {
+    RESET_PASSWORD='RESET_PASSWORD',
+}

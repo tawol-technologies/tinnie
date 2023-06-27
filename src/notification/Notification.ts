@@ -2,8 +2,8 @@ import { IOtpReq, IOtpValidateReq } from "../interfaces/notification";
 import RestConnector from "../others/RestConnector";
 
 export default class Notification {
-    notificationToken: string;
-    notificationEndpoint: string;
+    private notificationToken: string;
+    private notificationEndpoint: string;
 
     constructor(notificationToken: string, notificationEndpoint: string) {
         this.notificationEndpoint = notificationEndpoint;
