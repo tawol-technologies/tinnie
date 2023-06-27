@@ -10,8 +10,8 @@ export default class Notification {
         this.notificationToken = notificationToken;
     }
 
-    sendOTP(payload: IOtpReq, onSuccess: (payload: any) => void, onFailure: (reason: any) => void) {
-        RestConnector.exchange({
+    sendOTP(payload: IOtpReq) {
+        return RestConnector.exchangePromise({
             url: `${this.notificationEndpoint}/otp/get-otp`,
             method: 'POST',
             data: payload,
@@ -19,12 +19,7 @@ export default class Notification {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${this.notificationToken}`,
             },
-        },
-        {
-            onSuccess: onSuccess,
-            onFailure: onFailure
-        }
-        )
+        });
     }
 
     validateOTP(payload: IOtpValidateReq) {
@@ -36,15 +31,6 @@ export default class Notification {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${this.notificationToken}`,
             },
-        },
-        {
-            onSuccess: () => {
-                console.log('OTP sent successfully');
-            },
-            onFailure: (reason: any) => {
-                console.log(reason.response)
-            }
-        }
-        )
+        });
     }
 }
