@@ -29,7 +29,13 @@ export default class RestConnector {
     return new Promise((resolve, reject) => {
       LogService.info(`Calling URL :: ${config.url}\n PAYLOAD:: `);
       LogService.info(config.data);
-      return axios(config);
+      axios(config).then((res:any) => {
+        resolve(res);
+      }).catch((reason) => {
+        reject(reason);
+      }).finally(() => {
+        LogService.info(`Exchange Completed on URL :: ${config.url}`);
+      });
     });
   }
 }
