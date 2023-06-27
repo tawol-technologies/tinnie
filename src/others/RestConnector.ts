@@ -25,4 +25,18 @@ export default class RestConnector {
       LogService.info(`Exchange Completed on URL :: ${config.url}`);
     });
   }
+  static async exchangePromise<T>(config: IExchangeConfig<T>, handlers: IExchangeHandler<T>) {
+    return new Promise((resolve, reject) => {
+      LogService.info(`Calling URL :: ${config.url}\n PAYLOAD:: `);
+      LogService.info(config.data);
+      axios(config).then((res:any) => {
+        handlers.onSuccess && handlers.onSuccess(res.data, res.status, {...res});
+        resolve(res);
+      }).catch((reason) => {
+        reject(reason);
+      }).finally(() => {
+        LogService.info(`Exchange Completed on URL :: ${config.url}`);
+      });
+    });
+  }
 }
