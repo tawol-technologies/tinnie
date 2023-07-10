@@ -8,11 +8,11 @@ import JwtValidator from '../validators/JwtValidator';
 import { checkClientServiceAccess } from './internalServiceAuthorizationMiddleware';
 
 export default class WebSecurity {
-  whitelistPaths: string[];
-  tokenKey: string;
-  cookieKey: string;
-  tokenHeaderKey = 'Authorization';
-  secretHeaderKey = 'x-secret-key';
+  private whitelistPaths: string[];
+  private tokenKey: string;
+  private cookieKey: string;
+  private tokenHeaderKey = 'Authorization';
+  private secretHeaderKey = 'x-secret-key';
   customTokenVerification: TCustomTokenVerificationCallback | undefined;
 
   constructor(
