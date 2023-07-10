@@ -5,6 +5,7 @@ import {ResponseMessage} from '../response/ResponseMessage';
 import {ResponseService} from '../response/ResponseService';
 import {TCustomTokenVerificationCallback} from '../types/validators';
 import JwtValidator from '../validators/JwtValidator';
+import { checkClientServiceAccess } from './internalServiceAuthorizationMiddleware';
 
 export default class WebSecurity {
   whitelistPaths: string[];
@@ -68,5 +69,9 @@ export default class WebSecurity {
   getSecretKeyValue = (req: Request) => {
     return req.headers[this.secretHeaderKey] as string;
   };
+
+  clientServiceAuthentication = (req: Request, res: Response, next: NextFunction) => {
+    return checkClientServiceAccess(req, res, next, this.whitelistPaths);
+  }
 }
 
