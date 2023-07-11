@@ -6,18 +6,18 @@ export enum LogType {
 }
 
 export const Logger = {
-  log(msg: any, type?: LogType) {
+  log(msg: any, ins: ClassDecorator, type?: LogType) {
     const date = new Date();
 
     switch (type) {
       case LogType.ERROR:
-        return console.error(date + ': ' + msg);
+        return console.error(`${ins.name}: ${date}:: ${msg}`);
       case LogType.INFO:
-        return console.info(date + ': ' + msg);
+        return console.info(`${ins.name}: ${date}:: ${msg}`);
       case LogType.WARN:
-        return console.warn(date + ': ' + msg);
+        return console.warn(`${ins.name}: ${date}:: ${msg}`);
       default:
-        return console.log(date + ': ' + msg);
+        return console.log(`${ins.name}: ${date}:: ${msg}`);
     }
   },
   error(error: any) {
