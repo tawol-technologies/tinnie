@@ -11,7 +11,7 @@ export default class WebSecurity {
   private whitelistPaths: string[];
   private tokenKey: string;
   private cookieKey: string;
-  private tokenHeaderKey = 'Authorization';
+  private tokenHeaderKey = 'authorization';
   private secretHeaderKey = 'x-secret-key';
   customTokenVerification: TCustomTokenVerificationCallback | undefined;
 
@@ -33,7 +33,10 @@ export default class WebSecurity {
     try {
       const cookieToken = req.signedCookies[this.cookieKey];
       if (!cookieToken) {
-        const bearerVal = req.headers[this.tokenHeaderKey] as string;
+        let bearerVal = req.headers[this.tokenHeaderKey] as any;
+        if (typeof bearerVal === 'object') {
+          bearerVal = bearerVal.token;
+        }
         if (!bearerVal || !bearerVal.startsWith('Bearer ')) {
           return ResponseService.builder(
               res,
