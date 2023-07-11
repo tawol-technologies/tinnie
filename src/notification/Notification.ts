@@ -32,5 +32,17 @@ export default class Notification {
                 'Authorization': `Bearer ${this.notificationToken}`,
             },
         });
+    };
+
+    verificationLink(payload: IOtpValidateReq) {
+        return RestConnector.exchangePromise({
+            url: `${this.notificationEndpoint}/verifier/send-link`,
+            method: 'POST',
+            data: payload,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.notificationToken}`,
+            },
+        });
     }
 }
