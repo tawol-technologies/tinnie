@@ -5,7 +5,7 @@ import {ResponseService} from './ResponseService';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const CustomErrorHandler = (err: unknown, _req: Request, res: Response, _next: NextFunction) => {
-  LogService.log(err, LogType.ERROR);
+  LogService.log(err, undefined, LogType.ERROR);
   return ResponseService.builder(res, CustomError.get(err));
 };
 export default CustomErrorHandler;
