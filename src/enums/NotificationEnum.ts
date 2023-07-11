@@ -7,4 +7,6 @@ export enum OtpMediumEnum {
 
 export enum OtpPurposeEnum {
     RESET_PASSWORD='RESET_PASSWORD',
+    VERIFY_ACCOUNT='VERIFY_ACCOUNT',
+    OTP_VERIFICATION='OTP_VERIFICATION',
 }
