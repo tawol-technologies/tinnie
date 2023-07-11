@@ -31,12 +31,18 @@ export default class WebSecurity {
     }
 
     try {
-      const cookieToken = req.signedCookies[this.cookieKey];
-      if (!cookieToken) {
-        let bearerVal = req.headers[this.tokenHeaderKey] as any;
-        if (typeof bearerVal === 'object') {
-          bearerVal = bearerVal.token;
+      let cookieVal = req.signedCookies[this.cookieKey];
+      if (cookieVal) {
+        if (this.customTokenVerification) {
+          this.customTokenVerification(cookieVal);
+        } else {
+          if (typeof cookieVal === 'object') {
+            cookieVal = cookieVal.token;
+          }
+          JwtValidator.verifyToken(cookieVal, this.tokenKey);
         }
+      } else {
+        let bearerVal = req.headers[this.tokenHeaderKey] as string;
         if (!bearerVal || !bearerVal.startsWith('Bearer ')) {
           return ResponseService.builder(
               res,
@@ -55,12 +61,6 @@ export default class WebSecurity {
           this.customTokenVerification(token);
         } else {
           JwtValidator.verifyToken(token, this.tokenKey);
-        }
-      } else {
-        if (this.customTokenVerification) {
-          this.customTokenVerification(cookieToken);
-        } else {
-          JwtValidator.verifyToken(cookieToken, this.tokenKey);
         }
       }
       return next();
