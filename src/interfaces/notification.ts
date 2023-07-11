@@ -25,3 +25,13 @@ export interface IOtpValidateReq {
   otp: number;
   reference: string;
 }
+
+export interface IsendVerificationLinkReq {
+    expireInMins : number,
+    email: string,
+    purpose: string,
+    customerName: string,
+    sender: string,
+    senderEmail: string,
+    redirectUrl: string,
+}

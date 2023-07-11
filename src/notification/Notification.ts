@@ -1,4 +1,4 @@
-import { IOtpReq, IOtpValidateReq } from "../interfaces/notification";
+import { IOtpReq, IOtpValidateReq, IsendVerificationLinkReq as ISendVerificationLinkReq } from "../interfaces/notification";
 import RestConnector from "../others/RestConnector";
 
 export default class Notification {
@@ -34,7 +34,7 @@ export default class Notification {
         });
     };
 
-    verificationLink(payload: IOtpValidateReq) {
+    sendVerificationLink(payload: ISendVerificationLinkReq) {
         return RestConnector.exchangePromise({
             url: `${this.notificationEndpoint}/verifier/send-link`,
             method: 'POST',
