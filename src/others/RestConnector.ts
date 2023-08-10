@@ -25,7 +25,7 @@ export default class RestConnector {
       LogService.info(`Exchange Completed on URL :: ${config.url}`);
     });
   }
-  static async exchangePromise<T>(config: IExchangeConfig<T>) {
+  static async exchangePromise<T>(config: IExchangeConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       LogService.info(`Calling URL :: ${config.url}\n PAYLOAD:: `);
       LogService.info(config.data);
