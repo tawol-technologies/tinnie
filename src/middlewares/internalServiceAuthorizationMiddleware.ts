@@ -11,9 +11,17 @@ export const checkClientServiceAccess = async (req: Request, _res: Response, nex
   }
   
   if (!req.headers.authorization) {
-    next(ResponseBuilder.getInstance().badRequest(ResponseMessage.MISSING_CREDENTIALS));
-    return;
+    if(!req.headers[process.env.CMS_WHITELIST_KEY]) {
+      next(ResponseBuilder.getInstance().badRequest(ResponseMessage.MISSING_CREDENTIALS));
+      return;
+    }
+    // Validate using special key and value
+    if (req.headers[process.env.CMS_WHITELIST_KEY] !== process.env.CMS_WHITELIST_VALUE) {
+      next(ResponseBuilder.getInstance().badRequest(ResponseMessage.MISSING_CREDENTIALS));
+      return;
+    }
   }
+  
   const token = req.headers.authorization.substring(6);
   const service = process.env.SERVICE_NAME;
   await RestConnector.exchangeAsync({

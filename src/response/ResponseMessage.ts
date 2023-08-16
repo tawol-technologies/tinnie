@@ -59,4 +59,10 @@ export enum ResponseMessage {
     OTP_MEDIUM_NOT_AVAILABLE = 'Otp medium not available',
     MEDIUM_REQUIRED = 'Otp medium and its corresponding field is required',
     INVALID_OTP = 'Invalid otp',
+    ACCOUNT_NOT_FOUND = 'Account not found',
+    INVALID_CREDENTIALS_OR_PASSWORD_OR_PIN = 'Invalid credentials or password or pin',
+    INVALID_CREDENTIALS_OR_PASSWORD_OR_PIN_OR_OTP = 'Invalid credentials or password or pin or otp',
+    INVALID_CREDENTIALS_OR_PASSWORD_OR_PIN_OR_OTP_OR_EMAIL = 'Invalid credentials or password or pin or otp or email',
+    INVALID_CREDENTIALS_OR_PASSWORD_OR_PIN_OR_OTP_OR_EMAIL_OR_MOBILE = 'Invalid credentials or password or pin or otp or email or mobile',
+    INVALID_CREDENTIALS_OR_PASSWORD_OR_PIN_OR_OTP_OR_EMAIL_OR_MOBILE_OR_BUSINESS_ID = 'Invalid credentials or password or pin or otp or email or mobile or business id','
 }
