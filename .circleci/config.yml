@@ -70,7 +70,7 @@ workflows:
                 - main
   publish-minor-version:
     jobs:
-      - checkout-build-publish-major:
+      - checkout-build-publish-minor:
           context:
             - Credentials
           filters:

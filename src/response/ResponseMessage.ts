@@ -64,5 +64,5 @@ export enum ResponseMessage {
     INVALID_CREDENTIALS_OR_PASSWORD_OR_PIN_OR_OTP = 'Invalid credentials or password or pin or otp',
     INVALID_CREDENTIALS_OR_PASSWORD_OR_PIN_OR_OTP_OR_EMAIL = 'Invalid credentials or password or pin or otp or email',
     INVALID_CREDENTIALS_OR_PASSWORD_OR_PIN_OR_OTP_OR_EMAIL_OR_MOBILE = 'Invalid credentials or password or pin or otp or email or mobile',
-    INVALID_CREDENTIALS_OR_PASSWORD_OR_PIN_OR_OTP_OR_EMAIL_OR_MOBILE_OR_BUSINESS_ID = 'Invalid credentials or password or pin or otp or email or mobile or business id','
+    INVALID_CREDENTIALS_OR_PASSWORD_OR_PIN_OR_OTP_OR_EMAIL_OR_MOBILE_OR_BUSINESS_ID = 'Invalid credentials or password or pin or otp or email or mobile or business id',
 }
