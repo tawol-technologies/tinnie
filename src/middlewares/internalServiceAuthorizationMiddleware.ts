@@ -11,7 +11,7 @@ export const checkClientServiceAccess = async (req: Request, _res: Response, nex
   }
   
   if (!req.headers.authorization) {
-    if(!req.headers[process.env.CMS_WHITELIST_KEY]) {
+    if(!process.env.CMS_WHITELIST_KEY || !req.headers[process.env.CMS_WHITELIST_KEY]) {
       next(ResponseBuilder.getInstance().badRequest(ResponseMessage.MISSING_CREDENTIALS));
       return;
     }
@@ -20,6 +20,9 @@ export const checkClientServiceAccess = async (req: Request, _res: Response, nex
       next(ResponseBuilder.getInstance().badRequest(ResponseMessage.MISSING_CREDENTIALS));
       return;
     }
+    // Validated
+    next();
+    return;
   }
   
   const token = req.headers.authorization.substring(6);
