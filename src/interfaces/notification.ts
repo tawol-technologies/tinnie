@@ -35,3 +35,14 @@ export interface IsendVerificationLinkReq {
     senderEmail: string,
     redirectUrl: string,
 }
+
+export interface IsendEmailReq {
+    to: string;
+    cc?: string;
+    bcc?: string;
+    sender: string;
+    message: string;
+    subject: string;
+    replyTo?: string;
+}
+
