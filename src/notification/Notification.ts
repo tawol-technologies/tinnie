@@ -48,7 +48,7 @@ export default class Notification {
 
     sendEmailRequest(payload: IsendEmailReq) {
         return RestConnector.exchangePromise({
-            url: `${this.notificationEndpoint}/email/send`,
+            url: `${this.notificationEndpoint}/emailing/html`,
             method: 'POST',
             data: payload,
             headers: {
