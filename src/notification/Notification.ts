@@ -1,4 +1,4 @@
-import { IOtpReq, IOtpValidateReq, IsendVerificationLinkReq as ISendVerificationLinkReq } from "../interfaces/notification";
+import { IOtpReq, IOtpValidateReq, IsendVerificationLinkReq as ISendVerificationLinkReq, ISmsReq } from "../interfaces/notification";
 import RestConnector from "../others/RestConnector";
 
 export default class Notification {
@@ -44,5 +44,34 @@ export default class Notification {
                 'Authorization': `Bearer ${this.notificationToken}`,
             },
         });
+    }
+
+    sendEmail(payload: ISmsReq) {
+        return RestConnector.exchangePromise({
+            url: `${this.notificationEndpoint}/sms/sendSms`,
+            method: 'POST',
+            data: payload,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.notificationToken}`
+            }
+        })
+    }
+
+    sendWhatsapp(payload:any) {
+        return RestConnector.exchangePromise({
+            url: `${this.notificationEndpoint}/whatsapp/send`,
+            method: 'POST',
+            data: payload,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.notificationToken}`
+            }
+        })
+    }
+
+// to work on the push notification
+    pushNotification(){
+
     }
 }

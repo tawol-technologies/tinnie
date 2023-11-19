@@ -35,3 +35,10 @@ export interface IsendVerificationLinkReq {
     senderEmail: string,
     redirectUrl: string,
 }
+
+export interface ISmsReq {
+  from?: string;
+  text: string;
+  to: string;
+  subject?: string;
+};
