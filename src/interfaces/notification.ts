@@ -46,3 +46,18 @@ export interface IsendEmailReq {
     replyTo?: string;
 }
 
+export interface ISmsReq{
+  from?: string;
+    text: string;
+    to: string;
+    subject?: string;
+}
+
+export interface IWhatsappReq {
+  from?: string;
+  text: string;
+  to: string;
+  subject?: string;
+};
+
+
