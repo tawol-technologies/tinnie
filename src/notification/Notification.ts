@@ -1,5 +1,6 @@
 import { IOtpReq, IOtpValidateReq, IsendVerificationLinkReq as ISendVerificationLinkReq, IsendEmailReq, ISmsReq, IWhatsappReq} from "../interfaces/notification";
 import RestConnector from "../others/RestConnector";
+import ResponseBuilder from "../response/ResponseBody";
 
 export default class Notification {
     private notificationToken: string;
@@ -23,7 +24,7 @@ export default class Notification {
     }
 
     validateOTP(payload: IOtpValidateReq) {
-        return RestConnector.exchangePromise({
+        return RestConnector.exchangePromise<IOtpValidateReq, ResponseBuilder>({
             url: `${this.notificationEndpoint}/otp/validate-otp`,
             method: 'POST',
             data: payload,
