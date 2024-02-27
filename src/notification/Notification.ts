@@ -5,9 +5,9 @@ export default class Notification {
     private notificationToken: string;
     private notificationEndpoint: string;
 
-    constructor(notificationToken: string, notificationEndpoint: string) {
-        this.notificationEndpoint = notificationEndpoint;
-        this.notificationToken = notificationToken;
+    constructor(notificationToken?: string, notificationEndpoint?: string) {
+        this.notificationEndpoint = notificationEndpoint ?? 'http://notification-service:8002/notification-service/v1';
+        this.notificationToken = notificationToken ?? 'NjQ2MjgzZmE2ZDI2ZmY0NDY2ZWEzMDYyOlUyRnNkR1ZrWDE5UGpnV1JBQStnTTNzekZlNzFzMmRwbFFpWTNSSHR6Q1JzZVowNVZRK1VwMVVKN0ZuMVdvV1Vra2p6dzNDUmk0VmpQcmlZMTJLZnZONjNwbG1nelRiT3RzQUlCYU5MS2dnSFBuc01OalJXWHJ1TzAxNXk4YzNDYW9RNE10TmJmK01QdUMvYnhyOUVBd0ZPRlZOb1dyZzRuZFhXOTB3NHZTZz0=';
     }
 
     sendOTP(payload: IOtpReq) {
