@@ -12,7 +12,7 @@ export default class Notification {
     }
 
     sendOTP(payload: IOtpReq) {
-        return RestConnector.exchangePromise({
+        return RestConnector.exchangePromise<IOtpReq, ResponseBuilder>({
             url: `${this.notificationEndpoint}/otp/get-otp`,
             method: 'POST',
             data: payload,
