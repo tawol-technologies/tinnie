@@ -1,6 +1,6 @@
 {
   "name": "@tawol-tech/tinnie",
-  "version": "0.0.43",
+  "version": "0.0.44",
   "description": "NodeJS abstractions",
   "main": "index.js",
   "repository": "https://github.com/tawol-technologies/tinnie.git",

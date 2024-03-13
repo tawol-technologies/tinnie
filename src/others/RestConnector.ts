@@ -32,8 +32,8 @@ export default class RestConnector {
       LogService.info(config.data);
       axios(config).then((res:AxiosResponse<D>) => {
         resolve(res.data);
-      }).catch((reason) => {
-        reject(reason);
+      }).catch((reason: any) => {
+        reject(reason.response.data);
       }).finally(() => {
         LogService.info(`Exchange Completed on URL :: ${config.url}`);
       });
